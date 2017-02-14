@@ -10,11 +10,17 @@
 using namespace std;
 
 void file_open(string file_name){
-	int a;
+	int a,b;
+	string line;
 	const char * fnc = file_name.c_str();
-	fstream myfile(fnc, ios_base::in);
-	cout << file_name << ": ";
-	myfile >> a;
-	cout << endl;
+	ifstream myfile(fnc);
+	cout << file_name << ":" << endl;
+	myfile >> a >> b;
+	getline(myfile, line);
+	//myfile >> b;
+	while(getline(myfile, line)){
+		cout << line << endl;
+	}
+	cout << a << b << endl;
 }
 #endif
