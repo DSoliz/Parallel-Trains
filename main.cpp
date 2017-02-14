@@ -1,8 +1,11 @@
 #include <iostream>
 #include <fstream>
+#include <queue>
 #include "parser.h"
 
 using namespace std;
+
+queue < queue<int> > * train_routes;
 
 int main(int argc, char* argv[]){
 	char * file_name;
@@ -10,9 +13,10 @@ int main(int argc, char* argv[]){
 	for(int i = 0; i < argc; i++)
 		cout << "argv[" << i << "] = " << argv[i] << endl;
 
-	if(argc>0)
-		file_name= argv[1];
-
-	file_open(file_name);
+	if(argc>0){
+		file_open(argv[1], train_routes);
+	}else{
+		cout << "No input file." << endl;
+	}
 	return 0;
 }
