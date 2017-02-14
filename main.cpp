@@ -8,6 +8,7 @@ using namespace std;
 queue < queue<int> > * train_routes;
 
 int main(int argc, char* argv[]){
+	train_routes = new queue < queue<int> >;
 	char * file_name;
 	cout << "argc = " << argc << endl;
 	for(int i = 0; i < argc; i++)

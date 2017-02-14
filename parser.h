@@ -28,8 +28,9 @@ void file_open(string file_name, queue< queue<int> > * m_queue){
 			route.push(c);
 		}
 		cout << endl;
-		//m_queue->push(route);
+		m_queue->push(route);
 	}
 	cout << a << b << endl;
 }
+
 #endif
