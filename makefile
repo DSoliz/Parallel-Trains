@@ -1,4 +1,7 @@
 make:
-	g++ main.cpp -o trains
+	g++ -std=c++11 main.cpp -o trains -lpthread 
+thread:
+	g++ -std=c++11 threads.c -o thread -lpthread
 clean:
-	rm train
+	rm -f trains
+	rm -f thread

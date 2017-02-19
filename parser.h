@@ -6,23 +6,23 @@
 #include <queue>
 #include <iostream>
 #include <string>
+#include "barrier.h"
 
 using namespace std;
 
 void file_open(string file_name, queue< queue<int> > * m_queue){
-	int a,b;
 	string line;
 	const char * fnc = file_name.c_str();
 	ifstream myfile(fnc);
 	cout << file_name << ":" << endl;
-	myfile >> a >> b;
+	myfile >> train_n >> station_n;
 	getline(myfile, line);
-	//myfile >> b;
+	int c, length;
 	while(getline(myfile, line)){
-		int c, length;
 		queue<int> route;
 		length = line.length();
-		istringstream line_stream (line);
+		istringstream line_stream(line);
+		line_stream >> c;//dumps the integer that indicates route length, not needed for this implementation
 		while(line_stream >> c){
 			cout << c;
 			route.push(c);
@@ -30,7 +30,7 @@ void file_open(string file_name, queue< queue<int> > * m_queue){
 		cout << endl;
 		m_queue->push(route);
 	}
-	cout << a << b << endl;
+	cout << train_n << station_n << endl;
 }
 
 #endif
