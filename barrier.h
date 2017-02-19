@@ -37,7 +37,7 @@ void barrier(int& bCounter, std::mutex& bMutex,
 */
 
 
-
+int finished=0;
 
 class Barrier
 {
@@ -53,13 +53,14 @@ public:
 
 		barrierCounter++;
 		if (barrierCounter != numExpectedAtBarrier){
-			cout << "waiting for " << train_n << endl;
 			barrierCV.wait(ulbm);
 		}else
 		{
 			step++;
 			station_q = new queue<int>[station_n];
 			barrierCounter = 0;
+			train_n-=finished;
+			finished = 0;
 			barrierCV.notify_all();
 		}
 	}

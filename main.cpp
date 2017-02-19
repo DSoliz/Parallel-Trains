@@ -54,13 +54,11 @@ void work(queue <int> route, int trainid){
 		}else{
 			cout << "At time step: " << b.step << " Train "<< trainid <<" must stay at station " << location << endl;
 		}
-		b.barrier(train_n);
 		queue_check.lock();
-		if(route.empty()){
-			train_n--;
-			cout << "trains left= " << train_n << endl;
-		}
+		if(route.empty())
+			finished++;
 		queue_check.unlock();
+		b.barrier(train_n);
 	}
 }
 
