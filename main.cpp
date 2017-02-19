@@ -19,9 +19,11 @@ bool allowed(int loc, int dest){
 	queue_check.lock();
 	queue<int> s_queue = station_q[loc];//copy of a stations queue
 
+	//checking tracks between stations/
 	while(!s_queue.empty()){
 		if(s_queue.front() == dest){
 			allowed = false;
+			break;
 		}
 		s_queue.pop();
 	}
@@ -30,12 +32,12 @@ bool allowed(int loc, int dest){
 	while(!s_queue.empty()){
 		if(s_queue.front() == loc){
 			allowed = false;
+			break;
 		}
 		s_queue.pop();
 	}
-	if(allowed){
+	if(allowed)
 		station_q[loc].push(dest);
-	}
 	queue_check.unlock();
 	return allowed;
 }
