@@ -16,10 +16,9 @@ mutex queue_check;
 
 bool allowed(int loc, int dest){
 	bool allowed = true;
-	queue_check.lock();
+	queue_check.lock();//we lock this section as we are checking the local and destination station scheduled routes.
 	queue<int> s_queue = station_q[loc];//copy of a stations queue
-
-	//checking tracks between stations/
+	//checking tracks between stations
 	while(!s_queue.empty()){
 		if(s_queue.front() == dest){
 			allowed = false;
@@ -27,7 +26,6 @@ bool allowed(int loc, int dest){
 		}
 		s_queue.pop();
 	}
-
 	s_queue = station_q[dest];
 	while(!s_queue.empty()){
 		if(s_queue.front() == loc){
@@ -50,13 +48,13 @@ void work(queue <int> route, int trainid){
 	while(!route.empty()){
 		int nex_loc = route.front();
 		if(allowed(location, nex_loc)){
-			cout << "At time step: " << b.step <<" Train " << trainid << " moving from station " << location << " to station " << nex_loc << endl;
+			cout << "At time step: " << b.step <<"\033[1;32m Train " << trainid << " moving from station " << location << " to station " << nex_loc <<"\033[0m"<< endl;
 			location = nex_loc;
 			route.pop();
 		}else{
-			cout << "At time step: " << b.step << " Train "<< trainid <<" must stay at station " << location << endl;
+			cout << "At time step: " << b.step << "\033[1;31m Train "<< trainid <<" must stay at station " << location <<"\033[0m"<<endl;
 		}
-		queue_check.lock();
+		queue_check.lock();//locked this critical counter
 		if(route.empty())
 			finished++;
 		queue_check.unlock();

@@ -16,6 +16,7 @@ void file_open(string file_name, queue< queue<int> > * m_queue){
 	ifstream myfile(fnc);
 	cout << file_name << ":" << endl;
 	myfile >> train_n >> station_n;
+	cout << train_n << station_n << endl;
 	getline(myfile, line);
 	int c, length;
 	while(getline(myfile, line)){
@@ -30,7 +31,6 @@ void file_open(string file_name, queue< queue<int> > * m_queue){
 		cout << endl;
 		m_queue->push(route);
 	}
-	cout << train_n << station_n << endl;
 }
 
 #endif
